@@ -3,6 +3,7 @@ import './App.css';
 import Welcome from './component/welcome/welcome';
 import PokemonList from './component/pokemon-list/pokemon-list';
 import { nanoid } from "nanoid"
+import Alert from './component/alert/alert';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
       <Welcome name={45}></Welcome> */}
       {/* <Welcome personne={{name: "Pierre", lastName: "Bourdieu"}}></Welcome> */}
       <PokemonList pokemons={pokemons}></PokemonList>
-
+      <Alert></Alert>
     </div>
   );
 }
