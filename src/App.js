@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import Welcome from './component/welcome/welcome';
+import PokemonList from './component/pokemon-list/pokemon-list';
+import { nanoid } from "nanoid"
 
 function App() {
+
+  const pokemons = [
+    {
+      id: nanoid(),
+      name: "Salameche"
+    },
+    {
+      id: nanoid(),
+      name: "Carapuce"
+    },
+    {
+      id: nanoid(),
+      name: "Bulbizarre"
+    }
+  ]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Mon titre</h1>
+      {/* <Welcome name="Pierre" lastName="Bourdieu"></Welcome>
+      <Welcome name="Pierre" red={true}></Welcome>
+      <Welcome name={45}></Welcome> */}
+      {/* <Welcome personne={{name: "Pierre", lastName: "Bourdieu"}}></Welcome> */}
+      <PokemonList pokemons={pokemons}></PokemonList>
+
     </div>
   );
 }
