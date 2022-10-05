@@ -11,11 +11,14 @@ import { useState, useEffect } from 'react';
 import CounterButton from './component/counter-comm/counter-buttons';
 import Agify from './component/agify/agify';
 import FormAgify from './component/agify/form-agify';
+import axios from 'axios';
 
 function App() {
 
   const [counter, setCounter] = useState(0)
   const [nameToSearch, setNameToSearch] = useState("michael")
+
+  const [imagePokemon, setImagePokemon] = useState("")
 
   const incrementValue = (incrementation) => {
     setCounter(valeurActuelle => valeurActuelle + incrementation)
@@ -41,14 +44,13 @@ function App() {
   ]
 
   useEffect(() => {
-   const timeout = setTimeout(() => {
-    // console.log("pass")
-   }, 5000)
-
-    // return () => {
-    //     clearTimeout(timeout)
-    // }
-  }, [counter])
+   axios.get("https://pokeapi.co/api/v2/pokemon/149")
+    .then(({ data }) => {
+      console.log(data.name)
+      const imageUrl = data.sprites.other["official-artwork"].front_default
+      setImagePokemon(imageUrl)
+    })
+  }, [])
 
   const searchAge = (name) => {
     setNameToSearch(name)
@@ -79,6 +81,7 @@ function App() {
         onReset={resetValue}></CounterButton> */}
       <FormAgify onSearch={searchAge}></FormAgify>
       <Agify name={nameToSearch}></Agify>
+      <img src={imagePokemon}></img>
     </div>
   );
 }

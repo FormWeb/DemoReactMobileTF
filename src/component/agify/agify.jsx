@@ -14,17 +14,27 @@ const Agify = (props) => {
     const [loading, setLoading] = useState(true)
 
     // const fetchData = async () => {
-    //     const response = await axios.get("https://api.agify.io?name=" + name)
+    //     const response = await axios.get("https://api.agify.io?name=" + "william")
+    //     const response2 = await axios.get("https://api.agify.io?name=" + "michael")
     //     const data = response.data
-    //     return data
+    //     const data2 = response2.data
+    //     return [data.age, data2.age]
     // }
 
     useEffect(() => {
+
+        // Exemple function async
+
+        // fetchData()
+        //     .then(
+        //         response => console.log(response)
+        //     )
+        
         setLoading(true)
+        setError(false)
         axios.get("https://api.agify.io?name=" + name)
             .then(
                 ({ data }) => {
-                    console.log(data)
                     setFirstName(data.name)
                     setAge(data.age)
                     setError(false)
@@ -36,6 +46,18 @@ const Agify = (props) => {
             .finally(() => {
                 setLoading(false)
             })
+
+        // Equivalent avec fetch
+
+        // fetch("https://api.agify.io?name=" + name)
+        //     .then(res => res.json())
+        //     .then(
+        //         data => {
+        //             console.log(data)
+        //         }
+        //     )
+
+        // console.log("pass")
     }, [name])
 
     return (
