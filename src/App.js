@@ -7,12 +7,15 @@ import Alert from './component/alert/alert';
 import Toggle from './component/toggle/toggle';
 import FormDemo from './component/form-demo/form-demo';
 import CounterValue from './component/counter-comm/counter-value';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CounterButton from './component/counter-comm/counter-buttons';
+import Agify from './component/agify/agify';
+import FormAgify from './component/agify/form-agify';
 
 function App() {
 
   const [counter, setCounter] = useState(0)
+  const [nameToSearch, setNameToSearch] = useState("michael")
 
   const incrementValue = (incrementation) => {
     setCounter(valeurActuelle => valeurActuelle + incrementation)
@@ -37,6 +40,20 @@ function App() {
     }
   ]
 
+  useEffect(() => {
+   const timeout = setTimeout(() => {
+    // console.log("pass")
+   }, 5000)
+
+    // return () => {
+    //     clearTimeout(timeout)
+    // }
+  }, [counter])
+
+  const searchAge = (name) => {
+    setNameToSearch(name)
+  }
+  
   return (
     <div className="App">
       <h1>Mon titre</h1>
@@ -52,14 +69,16 @@ function App() {
       <Toggle/> */}
       {/* <h2>Mon from</h2>
       <FormDemo></FormDemo> */}
-      <h2>Mon Counter Comm</h2>
+      {/* <h2>Mon Counter Comm</h2>
       <CounterValue value={counter}></CounterValue>
       <CounterButton incrementation={1}
         onIncrement={incrementValue}
         onReset={resetValue}></CounterButton>
       <CounterButton incrementation={2}
         onIncrement={incrementValue}
-        onReset={resetValue}></CounterButton>
+        onReset={resetValue}></CounterButton> */}
+      <FormAgify onSearch={searchAge}></FormAgify>
+      <Agify name={nameToSearch}></Agify>
     </div>
   );
 }

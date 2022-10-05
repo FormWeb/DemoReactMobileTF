@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const FormDemo = () => {
 
@@ -10,9 +10,12 @@ const FormDemo = () => {
     }
 
     const handleChange = (e) => {
-        console.log(e.target.value)
         setInputValue(e.target.value)
     }
+
+    useEffect(() => {
+        setInputValue("bonjour")
+    }, [])
 
     return <>
         <input value={inputValue} onChange={handleChange}></input>
